@@ -1,4 +1,4 @@
-*> sqrtbaby.cob
+*> sqrtbabyex.cob
 *> Joshua Aidelman
 *> 1000139
 *> jaidelma@uoguelph.ca
@@ -94,36 +94,7 @@ READLINE.
         END-IF
       *> If valid number, perform approximation
       ELSE
-        PERFORM GETAPPROXIMATION THRU APPROXIMATE
+        CALL "extfunction" USING IN-Z, IN-DIFF
       END-IF.
 END-READLINE.
   PERFORM READLINE THRU END-READLINE.
-
-*> This function iterates the babylonian square root method
-GETAPPROXIMATION.
-    MOVE IN-DIFF TO DIFF.
-    MOVE IN-Z TO Z.
-    COMPUTE X ROUNDED = Z/2.
-    PERFORM APPROXIMATE VARYING K FROM 1 BY 1
-        UNTIL K IS GREATER THAN 1000.
-    MOVE IN-Z TO OUTP-Z.
-    WRITE OUT-LINE FROM ABORT-MESS AFTER ADVANCING 1 LINE.
-    PERFORM READLINE THRU END-READLINE.
-
-*> This function does the calculations for each step
-APPROXIMATE.
-    COMPUTE Y ROUNDED = 0.5 * (X + Z / X).
-    COMPUTE TEMP = X - Y.
-    IF TEMP IS LESS THAN ZERO
-      COMPUTE TEMP = - TEMP
-    END-IF.
-    IF TEMP / (Y + X) IS GREATER THAN DIFF
-      MOVE Y TO X
-      EXIT PARAGRAPH
-    END-IF.
-    MOVE IN-Z TO OUT-Z.
-    MOVE Y TO OUT-Y.
-    WRITE OUT-LINE FROM PRINT-LINE AFTER ADVANCING 1 LINE.
-    PERFORM READLINE THRU END-READLINE.
-    MOVE Y TO X.
-STOP RUN.
