@@ -78,11 +78,10 @@ PROCEDURE DIVISION.
 *> This function loops and asks the user to input a number, then approximates it's square root if it's a valid number
 READLINE.
     COMPUTE IN-DIFF = 0.001
-    PERFORM LOOP-1
-      UNTIL IN-Z NOT = 0.
-    LOOP-1.
-      WRITE OUT-LINE FROM INPUT-LINE AFTER ADVANCING 1 LINE.
-      ACCEPT IN-Z.
+    COMPUTE IN-Z = 1.
+    PERFORM WITH TEST BEFORE UNTIL IN-Z = 0
+      WRITE OUT-LINE FROM INPUT-LINE AFTER ADVANCING 1 LINE
+      ACCEPT IN-Z
       IF IN-Z IS NOT GREATER THAN ZERO THEN
         *> If equal to 0, exit program
         IF IN-Z IS EQUAL TO 0
@@ -95,7 +94,8 @@ READLINE.
       *> If valid number, perform approximation
       ELSE
         PERFORM GETAPPROXIMATION THRU APPROXIMATE
-      END-IF.
+      END-IF
+    END-PERFORM.
 END-READLINE.
   PERFORM READLINE THRU END-READLINE.
 
