@@ -22,7 +22,7 @@ WORKING-STORAGE SECTION.
   77 K    PICTURE S9999.
   77 X    PICTURE 9(11)V9(6).
   77 Y    PICTURE 9(11)V9(6).
-  77 TEMP PICTURE 9(11)V9(6).
+  77 TEMP PICTURE S9(11)V9(6).
 
 *> Print the square root calculation
 01 PRINT-LINE.
